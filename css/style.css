@@ -1,0 +1,14 @@
+
+.content{background:darkseagreen;
+    position: fixed; left:50%; top:50%;
+    transform: translate(-50%, -50%);
+    }
+
+.placeholder{float: left;}
+.weekdays{}
+.times{float: left;}
+
+.reservationList {}
+
+th{border: solid 2px;height: 25px;width: 80px;}
+td{border: solid 2px;height: 25px;width: 80px;}
