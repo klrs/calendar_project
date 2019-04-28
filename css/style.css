@@ -1,14 +1,22 @@
 
-.content{background:darkseagreen;
-    position: fixed; left:50%; top:50%;
-    transform: translate(-50%, -50%);
+
+table {
+    font-family: sans-serif;
+    width: 100%;
+    table-layout: fixed;
+    max-height: 800px;
+
+}
+#content{
+    height: 100%;
+    max-height: 800px;
+    width: 100%;
+    margin: 15% 0px 15% 0px;
+    background:darkseagreen;
+    float: left;
     }
 
-.placeholder{float: left;}
-.weekdays{}
-.times{float: left;}
 
-.reservationList {}
+th{border: solid 2px; text-align: center; overflow: hidden;}
+td{border: solid 2px; text-align: center; overflow: hidden;cursor: pointer;}
 
-th{border: solid 2px;height: 25px;width: 80px;}
-td{border: solid 2px;height: 25px;width: 80px;}
