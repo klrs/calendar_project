@@ -2,23 +2,20 @@
 <html lang="en">
 <head>
     <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <script src="calendar_scripts.js"></script>
     <meta charset="UTF-8">
     <title>Time Reservation</title>
 </head>
-<body>
+<body onload="initCalHeadings();">
 <!--header-->
 <div id="header">
 </div>
 <!--header end-->
 <!--content-->
 <div class="content">
-    <table class="placeholder">
+    <table id="weekdays">
         <tr>
             <th></th>
-        </tr>
-    </table>
-    <table class="weekdays">
-        <tr>
             <th>Monday</th>
             <th>Tuesday</th>
             <th>Wednesday</th>
@@ -27,8 +24,6 @@
             <th>Saturnday</th>
             <th>Sunday</th>
         </tr>
-    </table>
-    <table class="times">
         <tr>
             <th>14:00</th>
         </tr>
