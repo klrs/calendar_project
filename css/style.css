@@ -1,22 +1,9 @@
-
-
-table {
-    font-family: sans-serif;
-    width: 100%;
-    table-layout: fixed;
-    max-height: 800px;
-
+body{
+    background: #18191b;
 }
-#content{
-    height: 100%;
-    max-height: 800px;
-    width: 100%;
-    margin: 15% 0px 15% 0px;
-    background:darkseagreen;
-    float: left;
-    }
+#header{
+    margin: 1% 0px 2% 0px;
+}
 
-
-th{border: solid 2px; text-align: center; overflow: hidden;}
-td{border: solid 2px; text-align: center; overflow: hidden;cursor: pointer;}
-
+th{text-align: center; }
+td{text-align: center; cursor: pointer;}
