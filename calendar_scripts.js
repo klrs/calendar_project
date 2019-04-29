@@ -1,51 +1,53 @@
 //10x8
 
-function initCalHeadings() {
-    //generates current week dates to table headings
+function init() {
     //NEEDS TESTING
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    var date = new Date();
+    let date = new Date();
     var currentDay = date.getDay();
     var weekdays = document.getElementsByClassName("weekdays");
 
-    switch (currentDay) {
+    setCurrentDayColor();
+    setCellCallbacks();
+    setTblHeaders();
 
-        case 0:
-            weekdays[6].style.backgroundColor = "red";
-            currentDay = 7;
-            break;
-        case 1:
-            weekdays[0].style.backgroundColor = "red";
-            currentDay = 1;
-            break;
-        case 2:
-            weekdays[1].style.backgroundColor = "red";
-            currentDay = 2;
-            break;
-        case 3:
-            weekdays[2].style.backgroundColor = "red";
-            currentDay = 3;
-            break;
-        case 4:
-            weekdays[3].style.backgroundColor = "red";
-            currentDay = 4;
-            break;
-        case 5:
-            weekdays[4].style.backgroundColor = "red";
-            currentDay = 5;
-            break;
-        case 6:
-            weekdays[5].style.backgroundColor = "red";
-            currentDay = 6;
-            break;
+    function setCurrentDayColor() {
+        //colors current day red
+        weekdays[currentDay].style.backgroundColor = "red";
     }
 
-    date.setDate(date.getDate() - currentDay);
-    for(var i = 0; i < 7; i++) {
-        weekdays[i].innerHTML =
-            days[date.getDay()] + " " + (date.getDate()+1) + "." + (date.getMonth()+1) + "." + date.getFullYear();
-        date.setDate(date.getDate() + 1);
+    function setTblHeaders() {
+        //generates current week dates to table headings
+        let date = new Date();
+        date.setDate(date.getDate() - currentDay);
+        for(var i = 0; i < 7; i++) {
+            //weekdays[i].innerHTML = days[date.getDay()] + " " + (date.getDate()+1) + "." + (date.getMonth()+1) + "." + date.getFullYear();
+            weekdays[i].innerHTML = days[date.getDay()] + " " + date.toISOString().slice(0, 10);
+            date.setDate(date.getDate() + 1);
+        }
     }
 
+    function setCellCallbacks() {
+        //assigns callback function to each cell
+        let td = document.getElementsByTagName("td");
+        let form_date = document.forms[0];
+        let cells = [];
+        for(let time = 0; time < 9; time++) {
+            for(let day = 0; day < 7; day++) {
+                let c = time * 7 + day;
+                cells.push(new Cell(day, time));
+                td[c].onclick = function() {
+                    form_date.elements["date"].value = cells[c].day;
+                    form_date.elements["start_time"].value = cells[c].time;
+                };
+            }
+        }
+        function Cell(day, time) {
+            let date = new Date();
+            date.setDate((date.getDate() - (currentDay)) + day);
+            this.time = (14 + time) + ':' + '00';
+            this.day = date.toISOString().slice(0, 10);
+        }
+    }
 }

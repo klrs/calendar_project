@@ -4,6 +4,13 @@ body{
 #header{
     margin: 1% 0px 2% 0px;
 }
+#submit_form{
+    /*display: none;*/
+    color: darkgrey;
+}
 
 th{text-align: center; }
 td{text-align: center; cursor: pointer;}
+td:hover{
+    background-color: red;
+}
