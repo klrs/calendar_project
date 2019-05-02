@@ -2,10 +2,10 @@
 
 function init() {
     //NEEDS TESTING
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const days = ['unused','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 
     let date = new Date();
-    var currentDay = date.getDay();
+    var currentDay = date.getDay() || 7 ;
     var weekdays = document.getElementsByClassName("weekdays");
 
     setCurrentDayColor();
@@ -14,16 +14,18 @@ function init() {
 
     function setCurrentDayColor() {
         //colors current day red
-        weekdays[currentDay].style.backgroundColor = "red";
+        weekdays[currentDay - 1].style.backgroundColor = "red";
     }
 
     function setTblHeaders() {
         //generates current week dates to table headings
         let date = new Date();
-        date.setDate(date.getDate() - currentDay);
+
+        date.setDate(date.getDate() - currentDay + 1);
+
         for(var i = 0; i < 7; i++) {
-            //weekdays[i].innerHTML = days[date.getDay()] + " " + (date.getDate()+1) + "." + (date.getMonth()+1) + "." + date.getFullYear();
-            weekdays[i].innerHTML = days[date.getDay()] + " " + date.toISOString().slice(0, 10);
+            weekdays[i].innerHTML = days[date.getDay() || 7] + " " + (date.getDate()) + "." + (date.getMonth()+1) + "." + date.getFullYear();
+            //weekdays[i].innerHTML = days[date.getDay() || 7] + " " + date.toISOString().slice(0, 10);
             date.setDate(date.getDate() + 1);
         }
     }
@@ -36,11 +38,12 @@ function init() {
         for(let time = 0; time < 9; time++) {
             for(let day = 0; day < 7; day++) {
                 let c = time * 7 + day;
-                cells.push(new Cell(day, time));
+                cells.push(new Cell(day + 1, time));
                 td[c].onclick = function() {
                     form_date.elements["date"].value = cells[c].day;
                     form_date.elements["start_time"].value = cells[c].time;
-
+                   // document.getElementById("submit_form").style.display = "block";
+                    $('#submit_form').modal('show')
                 };
             }
         }

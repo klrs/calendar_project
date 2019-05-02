@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <script src="calendar_scripts.js"></script>
+    <script src="js/calendar_scripts.js"></script>
     <title>Time Reservation</title>
 </head>
 <body onload="init();">
@@ -17,14 +17,32 @@
 </div>
 <!--header end-->
 <!--content-->
-<div id="submit_form">
-    <form>
-        Name: <input type="text" name="name"><br>
-        Email: <input type="email" name="email"><br>
-        Date: <input type="date" name="date"><br>
-        Start time: <input type="time" name="start_time"><br>
-        End time: <input type="time" name="end_time">
-    </form>
+<div id="submit_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="formTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                    <h5 class="modal-title" id="formTitle">Time Reservation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group">
+                        Name: <input type="text" name="name" class="form-control">
+                        Email: <input type="email" name="email" class="form-control">
+                        Date: <input type="date" name="date" class="form-control" readonly>
+                        Start time: <input type="time" name="start_time" class="form-control" readonly>
+                        End time: <input type="time" name="end_time" class="form-control">
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Reserve time</button>
+                </div>
+            </div>
+        </div>
+
 </div>
 
 <div id="content">

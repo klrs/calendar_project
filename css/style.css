@@ -5,12 +5,28 @@ body{
     margin: 1% 0px 2% 0px;
 }
 #submit_form{
-    /*display: none;*/
-    color: darkgrey;
+    display: none;
+    color: lightgray;
 }
 
 th{text-align: center; }
 td{text-align: center; cursor: pointer;}
-td:hover{
-    background-color: red;
+td:hover{background-color: red;}
+
+.modal-header{
+    background: #31363c;
+    border-bottom: #53677b solid 2px;;
+ }
+
+.modal-body{
+    background: #3b4147;
+}
+
+.modal-footer{
+    border-top: #53677b solid 2px;
+    background: #31363c;
+}
+
+.modal-content{
+    background: #272b2e;
 }
