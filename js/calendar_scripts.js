@@ -7,19 +7,37 @@ function init() {
     let date = new Date();
     var currentDay = date.getDay() || 7 ;
     var weekdays = document.getElementsByClassName("weekdays");
+    var oldDay = currentDay;
+    var newDay = currentDay;
 
-    setCurrentDayColor();
+    setCurrentDayColor(currentDay);
     setCellCallbacks();
-    setTblHeaders();
+    setTblHeaders(date,currentDay);
 
-    function setCurrentDayColor() {
+    function setCurrentDayColor(currentDay) {
         //colors current day red
-        weekdays[currentDay - 1].style.backgroundColor = "red";
+        newDay = currentDay;
+        weekdays[newDay - 1].style.backgroundColor = "red";
+
+        if(newDay != oldDay){
+            weekdays[oldDay - 1].style.backgroundColor = "#31353a";
+        }
+        oldDay = newDay;
     }
 
-    function setTblHeaders() {
+    document.getElementById("navi").onchange = function() {
+        //datepicker/calendar navigator
+        let date = document.getElementById('navi').valueAsDate;
+        let newCurDay = date.getDay() || 7 ;
+        //new dates to headers
+        setTblHeaders(date,newCurDay);
+        setCurrentDayColor(newCurDay);
+    }
+
+    function setTblHeaders(date,currentDay) {
         //generates current week dates to table headings
-        let date = new Date();
+        document.getElementById('navi').value = date.toISOString().slice(0, 10);
+       // alert("headertest."+ date); test alert
 
         date.setDate(date.getDate() - currentDay + 1);
 
@@ -42,7 +60,6 @@ function init() {
                 td[c].onclick = function() {
                     form_date.elements["date"].value = cells[c].day;
                     form_date.elements["start_time"].value = cells[c].time;
-                   // document.getElementById("submit_form").style.display = "block";
                     $('#submit_form').modal('show')
                 };
             }
