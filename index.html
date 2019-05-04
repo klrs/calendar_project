@@ -8,7 +8,7 @@
     <script src="js/calendar_scripts.js"></script>
     <title>Time Reservation</title>
 </head>
-<body onload="init();">
+<body onload="calendar();">
 <!--header-->
 <div id="header">
     <div class="mx-auto" style="width: 629px;">
@@ -51,7 +51,7 @@
         <tr>
             <th>
                 Calendar<br>
-                <input type="date" id="navi" onchange="navigate()"></input>
+                <input type="date" id="navi"><input type="button" value="Search" id="navisubm">
             </th>
             <th class="weekdays" scope="col">Monday</th>
             <th class="weekdays" scope="col">Tuesday</th>
