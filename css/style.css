@@ -4,6 +4,9 @@ body{
 #header{
     margin: 1% 0px 2% 0px;
 }
+h1 {
+    color: lightgray;
+}
 #submit_form{
     display: none;
     color: lightgray;
