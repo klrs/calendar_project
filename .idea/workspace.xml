@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1103656e-b46f-43d3-b0b0-99d4c4c7ad61" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img/header.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/calendar_scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/calendar_scripts.js" afterDir="false" />
-    </list>
+    <list default="true" id="1103656e-b46f-43d3-b0b0-99d4c4c7ad61" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1156">
-              <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="77" />
+            <state relative-caret-position="238">
+              <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
               <folding>
                 <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#init#0" />
                 <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#init#0" />
@@ -85,7 +79,20 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="calendar_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="calendar_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -128,7 +135,7 @@
       <workItem from="1557072490838" duration="14027000" />
       <workItem from="1557100818426" duration="1710000" />
       <workItem from="1557102910939" duration="97000" />
-      <workItem from="1557133579603" duration="3470000" />
+      <workItem from="1557133579603" duration="3775000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/klrs/calendar_project&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;index.html">
       <created>1556452461360</created>
@@ -165,17 +172,23 @@
       <option name="project" value="LOCAL" />
       <updated>1557102366841</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Nuolet done, submit formin aika muutettu. TODO migration...">
+      <created>1557138027004</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1557138027004</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77508000" />
+    <option name="totallyTimeSpent" value="77813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="953" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.23027718" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2297593" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -188,7 +201,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32932165" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49938348" visible="true" weight="0.11487965" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49938348" visible="true" weight="0.11487965" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -226,7 +239,8 @@
     <MESSAGE value="Päivämäärät oikein viikko alkaa maanataina ja aikavaraus formi" />
     <MESSAGE value="Kalenteri navigointi lisätty" />
     <MESSAGE value="Cellit korjattu, navigointi nuolet laitettu, ISOStringeihin tehty aikaeron korjaus. TODO nuolinapeille kuvat." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cellit korjattu, navigointi nuolet laitettu, ISOStringeihin tehty aikaeron korjaus. TODO nuolinapeille kuvat." />
+    <MESSAGE value="Nuolet done, submit formin aika muutettu. TODO migration..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Nuolet done, submit formin aika muutettu. TODO migration..." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
@@ -270,8 +284,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="77" />
+        <state relative-caret-position="238">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
           <folding>
             <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#init#0" />
             <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#init#0" />
