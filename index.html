@@ -11,8 +11,8 @@
 <body onload="init();">
 <!--header-->
 <div id="header">
-    <div class="mx-auto" style="width: 629px;">
-        <img src="img/header.jpg" alt="Reservation Calendar" class="img-fluid">
+    <div class="mx-auto text-light h1" style="width: 629px;">
+        <p class="display-4">Reservation Calendar</p>
     </div>
 </div>
 <!--header end-->
@@ -31,10 +31,8 @@
                         Name: <input type="text" name="name" class="form-control">
                         Email: <input type="email" name="email" class="form-control">
                         Date: <input type="date" name="date" class="form-control" readonly>
-                        Start time: <input type="time" name="start_time" class="form-control" readonly>
-                        End time: <input type="time" name="end_time" class="form-control">
-                    </form>
-
+                        Reservation time: <input type="text" name="start_time" class="form-control" readonly>
+                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -49,9 +47,9 @@
 
     <table class="table table-dark table-bordered table-responsive-sm">
         <tr>
-            <th id="weekArrowBack" class="weekArrow" scope="col"> <-- </th>
+            <th id="weekArrowBack" class="weekArrow" scope="col"> <img src="img/arrowleft.gif" alt="Arrow left" class="img-fluid"> </th>
             <th id="currentWeek" class="bg-danger text-white" scope="col"> Week </th>
-            <th id="weekArrowForward" class="weekArrow" scope="col"> --> </th>
+            <th id="weekArrowForward" class="weekArrow" scope="col"> <img src="img/arrowright.gif" alt="Arrow right" class="img-fluid"> </th>
         </tr>
     </table>
     <table class="table table-striped table-dark table-bordered table-responsive-sm">

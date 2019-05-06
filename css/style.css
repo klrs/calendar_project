@@ -13,7 +13,7 @@ th{text-align: center; }
 td{text-align: center; cursor: pointer;}
 td:hover{background-color: red;}
 .weekArrow:hover{background-color: red; cursor: pointer;}
-
+img{max-height: 30px}
 .table{margin-top: 0%; margin-bottom: 0%; padding: 0%;}
 
 .modal-header{

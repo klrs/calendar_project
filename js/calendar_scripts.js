@@ -51,7 +51,6 @@ function init() {
         headersDate.setDate(headersDate.getDate() - currentDay + 1);
         for(var i = 0; i < 7; i++) {
             weekdays[i].innerHTML = days[headersDate.getDay() || 7] + " " + (headersDate.getDate()) + "." + (headersDate.getMonth()+1) + "." + headersDate.getFullYear();
-            //weekdays[i].innerHTML = days[date.getDay() || 7] + " " + date.toISOString().slice(0, 10);
             headersDate.setDate(headersDate.getDate() + 1);
         }
     }
@@ -77,7 +76,7 @@ function init() {
             let cellDate= new Date(date.valueOf());
             cellDate.setDate(cellDate.getDate() - currentDay + day + 1);
 
-            this.time = (14 + time) + ':' + '00';
+            this.time = (14 + time) + ':' + '00 - ' + (15+time) + ':' + '00';
             var isoDate = new Date(cellDate.getTime() - (cellDate.getTimezoneOffset() * 60000));
             this.day = isoDate.toISOString().slice(0, 10);
 
