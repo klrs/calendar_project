@@ -1,24 +1,73 @@
-//10x8
-
 function calendar() {
-    //NEEDS TESTING
     const days = ['unused','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
 
     var date = new Date();
     var currentDay = date.getDay() || 7 ;
     var weekdays = document.getElementsByClassName("weekdays");
     let cells = [];
+
     var oldDay = currentDay;
     var newDay = currentDay;
 
     setup();
 
     document.getElementById("navi").onchange = function() {calendarNav()};
-
     function calendarNav() {
         //datepicker/calendar navigator
         date = document.getElementById('navi').valueAsDate;
         setup();
+    }
+    document.getElementById("submit").onclick = function() {
+        let form = document.forms[0];
+
+        //data
+        let name = form.elements["name"].value;
+        let email = form.elements["email"].value;
+        let f_date = form.elements["date"].value;
+        let time = form.elements["start_time"].value.split(":")[0];
+
+        //ajax
+        let uri = 'api/reservation?name=' + name + '&email=' + email + '&date=' + f_date + '&time=' + time;
+        let httpRequest = createRequest();
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState === 4) {
+                if (httpRequest.status === 200) {
+                    alert(httpRequest.responseText);
+                    setup();
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        };
+
+        sendRequest(uri, "POST", httpRequest);
+        $('#submit_form').modal('hide');
+    };
+
+    function createRequest() {
+        let httpRequest;
+        if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+            httpRequest = new XMLHttpRequest();
+        } else if (window.ActiveXObject) { // IE
+            try {
+                httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {}
+            }
+        }
+        if (!httpRequest) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+        return httpRequest;
+    }
+    function sendRequest(uri, method, httpRequest) {
+        httpRequest.open(method, uri);
+        httpRequest.send();
     }
 
     function setCurrentDayColor() {
@@ -26,7 +75,7 @@ function calendar() {
         newDay = currentDay;
         //header color from bootstrap class
         weekdays[newDay - 1].classList.add("bg-danger");
-        if(newDay != oldDay){
+        if(newDay !== oldDay){
             //remove class from old date
             weekdays[oldDay - 1].classList.remove("bg-danger");
         }
@@ -86,6 +135,31 @@ function calendar() {
     function setReservations() {
         //WIP
         //get current WEEK reservations loop??
+        let newdate = new Date(+date);
+        let uri = "";
+        newdate.setDate(newdate.getDate() - currentDay + 1);
+        let httpRequests = [];
+        for(let i = 0; i < 7; i++) {
+            let r_date = newdate.toISOString().split("T")[0];
+            let reservations;
+            uri = 'api/reservation/' + r_date;
+
+            httpRequests[i] = createRequest();
+            httpRequests[i].onreadystatechange = function(){
+                if (httpRequests[i].readyState === 4) {
+                    if (httpRequests[i].status === 200) {
+                        reservations = httpRequests[i].responseText;
+                        alert(reservations);
+                        //EXTRACT RESERVATIONS AND CHECK THE TIME AND MARK RESERVED CELLS!!!!
+                    } else {
+                        alert('There was a problem with the request.');
+                    }
+                }
+            };
+            sendRequest(uri, "GET", httpRequests[i]);
+            newdate.setDate(newdate.getDate()+1);
+        }
+
         let dummyjson = '{"date":"5/5/2019", "time":"14"}';
         let o = JSON.parse(dummyjson);
         cells[0].reserved = true;
@@ -113,7 +187,7 @@ function calendar() {
         dateArrow.setDate(dateArrow.getDate() - 7);
         date = new Date(+dateArrow);
         setup();
-    }
+    };
 
     //nav arrow forwards
     document.getElementById("weekArrowForward").onclick = function () {
@@ -121,7 +195,7 @@ function calendar() {
         dateArrow.setDate(dateArrow.getDate() + 7);
         date = new Date(+dateArrow);
         setup();
-    }
+    };
 
     function setup() {
         currentDay = date.getDay() || 7;
