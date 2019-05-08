@@ -159,11 +159,11 @@ if ($resource[1]=="api") {
         echo createReservation($parameters[name], $parameters[email], $parameters[date], $parameters[time]);
     }
     else if ($request_method=="GET" && $resource[2]=="reservation") {
-        $reservations = getReservations($resource[3]);  //parametriksi päivä HUOM PVM FORMAATISSA YYYY-MM-DD
+        $reservations = getReservations($parameters[s_date], $parameters[e_date]);  //parametriksi päivä HUOM PVM FORMAATISSA YYYY-MM-DD
         echo json_encode($reservations);
     }
     else if ($request_method=="DELETE" && $resource[2]=="reservation") {
-        echo createReservation($resource[id], $resource[email], $resource[date], $resource[time]);
+        echo deleteReservation($resource[id], $resource[email], $resource[date], $resource[time]);
     }
     else {
         http_response_code(405); # Method not allowed

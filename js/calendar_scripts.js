@@ -43,6 +43,7 @@ function calendar() {
         $('#submit_form').modal('hide');
     };
     document.getElementById("deleteSubmit").onclick = function() {
+        alert("dfdf");
         let form = document.forms[1];   //PRONE TO ERROR
         let id = form.elements["id"];
         let email = form.elements["email"];
@@ -123,6 +124,7 @@ function calendar() {
         for(let time = 0; time < 9; time++) {
             for(let day = 0; day < 7; day++) {
                 cells.push(new Cell(day, time));
+                //cells[day + time * 7].reserved = false;
             }
         }
         function Cell(day, time) {
@@ -151,6 +153,8 @@ function calendar() {
         let delform_date = document.forms[1];
 
         if(cells[index].reserved === false) {
+            td[index].style.backgroundColor = "transparent";
+            td[index].innerHTML = "";
             td[index].onclick = function () {
                 form_date.elements["date"].value = cells[index].day;
                 form_date.elements["start_time"].value = cells[index].time;
@@ -170,9 +174,40 @@ function calendar() {
         //WIP
         //get current WEEK reservations loop??
         let newdate = new Date(+date);
-        let uri = "";
         newdate.setDate(newdate.getDate() - currentDay + 1);
-        let httpRequests = [];
+        let start_date = newdate.toISOString().split("T")[0];
+        newdate.setDate(newdate.getDate()+6);
+        let end_date = newdate.toISOString().split("T")[0];
+
+        let uri = 'api/reservation?s_date=' + start_date + '&e_date=' + end_date;
+        let httpRequest = createRequest();
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState === 4) {
+                if(httpRequest.status === 200) {
+                    alert("yay");
+                    let reservationsJSON = httpRequest.responseText;
+                    let res = JSON.parse(reservationsJSON);
+                    for(let i = 0; i < res.length; i++) {
+                        let cell_index = 0;
+                        for(let y = 0; y < 7; y++) {
+                            if(res[i].PVM === cells[y].day) {
+                                cell_index = cell_index + y;
+                            }
+                        }
+                        cell_index = cell_index + (7 * Math.abs(14 - res[i].KLOSTART));
+                        cells[cell_index].reserved = true;
+                        checkCell(cell_index);
+                    }
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        };
+        sendRequest(uri, "GET", httpRequest);
+
+
+
+        /*
         for(let i = 0; i < 7; i++) {
             let r_date = newdate.toISOString().split("T")[0];
             uri = 'api/reservation/' + r_date;
@@ -198,6 +233,7 @@ function calendar() {
             sendRequest(uri, "GET", httpRequests[i]);
             newdate.setDate(newdate.getDate()+1);
         }
+        */
     }
     function getWeekOfYear() {
         var target = new Date(date.valueOf()),
