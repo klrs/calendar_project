@@ -11,12 +11,10 @@ function calendar() {
 
     setup();
 
-    document.getElementById("navi").onchange = function() {calendarNav()};
-    function calendarNav() {
-        //datepicker/calendar navigator
+    document.getElementById("navi").onchange = function() {
         date = document.getElementById('navi').valueAsDate;
         setup();
-    }
+    };
     document.getElementById("submit").onclick = function() {
         let form = document.forms[0];
 
@@ -44,6 +42,7 @@ function calendar() {
         $('#submit_form').modal('hide');
     };
     document.getElementById("deleteSubmit").onclick = function() {
+        // MIGHT NEED TO ADD DATE & TIME
         let form = document.forms[1];
         let id = form.elements["id"];
         let email = form.elements["email"];
@@ -51,7 +50,7 @@ function calendar() {
         let uri = 'api/reservation?id=' + id + "&email=" + email;
         let httpRequest = createRequest();
 
-        //FIXES ??
+        //ADD FUNCTIONALITY ??
         httpRequest.onreadystatechange = function() {
             if (httpRequest.readyState === 4) {
                 if (httpRequest.status === 200) {
@@ -61,7 +60,9 @@ function calendar() {
                     alert('There was a problem with the request.');
                 }
             }
-        }
+        };
+        sendRequest(uri, "DELETE", httpRequest);
+        $('#delete_form').modal('hide');
     };
 
     function createRequest() {
