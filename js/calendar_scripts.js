@@ -43,10 +43,9 @@ function calendar() {
         $('#submit_form').modal('hide');
     };
     document.getElementById("deleteSubmit").onclick = function() {
-        alert("dfdf");
         let form = document.forms[1];   //PRONE TO ERROR
-        let id = form.elements["id"];
-        let email = form.elements["email"];
+        let id = form.elements["id"].value;
+        let email = form.elements["email"].value;
         let f_date = form.elements["date"].value;
         let time = form.elements["start_time"].value.split(":")[0];
 
@@ -184,7 +183,6 @@ function calendar() {
         httpRequest.onreadystatechange = function() {
             if (httpRequest.readyState === 4) {
                 if(httpRequest.status === 200) {
-                    alert("yay");
                     let reservationsJSON = httpRequest.responseText;
                     let res = JSON.parse(reservationsJSON);
                     for(let i = 0; i < res.length; i++) {

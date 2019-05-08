@@ -118,7 +118,6 @@ function createReservation($nimi, $email, $pvm, $klo){
 
  // palauttaa true jos poistaminen onnistuu, muuten false
 function deleteReservation($id, $email, $pvm, $klo) {
-
     $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
     $success = true;
 
@@ -164,7 +163,8 @@ if ($resource[1]=="api") {
         echo json_encode($reservations);
     }
     else if ($request_method=="DELETE" && $resource[2]=="reservation") {
-        echo deleteReservation($resource[id], $resource[email], $resource[date], $resource[time]);
+        echo $parameters[id], $parameters[email], $parameters[date], $parameters[time];
+        echo deleteReservation($parameters[id], $parameters[email], $parameters[date], $parameters[time]);
     }
     else {
         http_response_code(405); # Method not allowed

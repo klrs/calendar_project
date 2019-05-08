@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1103656e-b46f-43d3-b0b0-99d4c4c7ad61" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/calendar_scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/calendar_scripts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="30" column="82" lean-forward="true" selection-start-line="30" selection-start-column="82" selection-end-line="30" selection-end-column="82" />
+            <state relative-caret-position="130">
+              <caret line="189" column="6" lean-forward="true" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
               <folding>
                 <element signature="e#2700#2707#1" expanded="true" />
               </folding>
@@ -25,14 +27,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1186">
-              <caret line="126" column="57" lean-forward="true" selection-start-line="126" selection-start-column="57" selection-end-line="126" selection-end-column="57" />
+            <state relative-caret-position="-1502">
+              <caret line="184" column="48" lean-forward="true" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
               <folding>
+                <element signature="e#463#547#0" />
+                <element signature="e#608#1530#0" />
+                <element signature="e#1597#2501#0" />
                 <element signature="n#!!block;n#createRequest#0;n#!!block;n#calendar#0" />
                 <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#calendar#0" />
+                <element signature="n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
+                <element signature="n#!!block;n#setCellCallbacks#0;n#!!block;n#calendar#0" />
+                <element signature="n#!!block;n#checkCell#0;n#!!block;n#calendar#0" />
                 <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#calendar#0" />
               </folding>
             </state>
@@ -42,17 +50,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../WeTe_Kalle_Rissanen/wete_kalle_rissanen/labs/15 RESTful API/php/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1248">
+            <state relative-caret-position="1176">
               <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+            <state relative-caret-position="346">
+              <caret line="134" column="5" lean-forward="true" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -84,9 +92,9 @@
       <list>
         <option value="$PROJECT_DIR$/calendar_scripts.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/js/calendar_scripts.js" />
         <option value="$PROJECT_DIR$/api.php" />
+        <option value="$PROJECT_DIR$/js/calendar_scripts.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -186,7 +194,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97557000" />
+    <option name="totallyTimeSpent" value="99113000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
@@ -262,15 +270,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../WeTe_Kalle_Rissanen/wete_kalle_rissanen/labs/15 RESTful API/php/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
+        <state relative-caret-position="1176">
           <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1502">
+          <caret line="184" column="48" lean-forward="true" selection-start-line="184" selection-start-column="48" selection-end-line="184" selection-end-column="48" />
+          <folding>
+            <element signature="e#463#547#0" />
+            <element signature="e#608#1530#0" />
+            <element signature="e#1597#2501#0" />
+            <element signature="n#!!block;n#createRequest#0;n#!!block;n#calendar#0" />
+            <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#calendar#0" />
+            <element signature="n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
+            <element signature="n#!!block;n#setCellCallbacks#0;n#!!block;n#calendar#0" />
+            <element signature="n#!!block;n#checkCell#0;n#!!block;n#calendar#0" />
+            <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#calendar#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="30" column="82" lean-forward="true" selection-start-line="30" selection-start-column="82" selection-end-line="30" selection-end-column="82" />
+        <state relative-caret-position="130">
+          <caret line="189" column="6" lean-forward="true" selection-start-line="189" selection-start-column="6" selection-end-line="189" selection-end-column="6" />
           <folding>
             <element signature="e#2700#2707#1" expanded="true" />
           </folding>
@@ -279,20 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="126" column="21" lean-forward="true" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1186">
-          <caret line="126" column="57" lean-forward="true" selection-start-line="126" selection-start-column="57" selection-end-line="126" selection-end-column="57" />
-          <folding>
-            <element signature="n#!!block;n#createRequest#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#calendar#0" />
-          </folding>
+        <state relative-caret-position="346">
+          <caret line="134" column="5" lean-forward="true" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
         </state>
       </provider>
     </entry>
