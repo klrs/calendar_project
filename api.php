@@ -46,30 +46,48 @@ function getMethod() {
 // muodossa Array([0] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- ensimmäinen varaus
 //				[1] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- toka varaus... jne.
 
-function getReservations($pvm){
+function getReservations($startDate, $endDate){
+
     $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
+
     if ($db->connect_errno != 0) {
         echo $db->connect_error;
         exit;
     }
-    $query = "SELECT * FROM VARAUS WHERE PVM='$pvm'";
+
+    //$query = "SELECT * FROM VARAUS WHERE PVM BETWEEN '2019-05-06' AND '2019-05-12'";
+    $query = "SELECT * FROM VARAUS WHERE PVM BETWEEN '$startDate' AND '$endDate'";
+
     $results = $db->query($query);
+
     if ($results->num_rows > 0) {
+
         $tmp = array();
         while ($row = $results->fetch_assoc()) {
             $tmp[] = $row;
         }
+        $closed = $db->close();
+        if (!$closed) {
+            echo 'Virhe sulkiessa yhteyttä tietokantaan';
+        }
+        return $tmp;
     }
+
     else {
         echo 'Kysely ei tuottanut tuloksia. </br>';
-        $tmp = null;
+        $closed = $db->close();
+        if (!$closed) {
+            echo 'Virhe sulkiessa yhteyttä tietokantaan';
+        }
+        return null;
     }
 
     $closed = $db->close();
+
     if (!$closed) {
         echo 'Virhe sulkiessa yhteyttä tietokantaan';
     }
-    return $tmp;
+
 }
 
 //palauttaa true jos lisäys onnistuu, false jos ei

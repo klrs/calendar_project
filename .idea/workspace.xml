@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1103656e-b46f-43d3-b0b0-99d4c4c7ad61" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/calendar_scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/calendar_scripts.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,12 +11,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="90" column="1" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+            <state relative-caret-position="986">
+              <caret line="58" column="87" selection-start-line="58" selection-start-column="87" selection-end-line="58" selection-end-column="87" />
               <folding>
                 <element signature="e#2700#2707#1" expanded="true" />
               </folding>
@@ -26,51 +33,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="187" column="85" selection-start-line="187" selection-start-column="85" selection-end-line="187" selection-end-column="85" />
+            <state relative-caret-position="680">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
-                <element signature="e#413#429#0" />
-                <element signature="e#641#1544#0" />
-                <element signature="e#1611#2217#0" />
-                <element signature="n#!!block;n#createRequest#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#sendRequest#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#Cell#0;n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#setCellCallbacks#0;n#!!block;n#calendar#0" />
-                <element signature="n#!!block;n#checkCells#0;n#!!block;n#calendar#0" />
                 <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#calendar#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../WeTe_Kalle_Rissanen/wete_kalle_rissanen/labs/15 RESTful API/php/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="143" column="108" selection-start-line="143" selection-start-column="108" selection-end-line="143" selection-end-column="108" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -94,8 +64,8 @@
         <option value="$PROJECT_DIR$/calendar_scripts.js" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/api.php" />
         <option value="$PROJECT_DIR$/js/calendar_scripts.js" />
+        <option value="$PROJECT_DIR$/api.php" />
       </list>
     </option>
   </component>
@@ -161,6 +131,7 @@
       <workItem from="1556874306088" duration="6098000" />
       <workItem from="1556957223316" duration="4335000" />
       <workItem from="1557038907022" duration="5484000" />
+      <workItem from="1557328320325" duration="269000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/klrs/calendar_project&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;index.html">
       <created>1556452461360</created>
@@ -194,10 +165,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90875000" />
+    <option name="totallyTimeSpent" value="90971000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1098" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.23240939" />
@@ -270,43 +241,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+        <state relative-caret-position="986">
+          <caret line="58" column="87" selection-start-line="58" selection-start-column="87" selection-end-line="58" selection-end-column="87" />
           <folding>
             <element signature="e#2700#2707#1" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../WeTe_Kalle_Rissanen/wete_kalle_rissanen/labs/15 RESTful API/php/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="61" column="38" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../WeTe_Kalle_Rissanen/wete_kalle_rissanen/labs/15 RESTful API/php/index.php" />
     <entry file="file://$PROJECT_DIR$/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="143" column="108" selection-start-line="143" selection-start-column="108" selection-end-line="143" selection-end-column="108" />
+        <state relative-caret-position="544">
+          <caret line="90" column="1" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/calendar_scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="187" column="85" selection-start-line="187" selection-start-column="85" selection-end-line="187" selection-end-column="85" />
+        <state relative-caret-position="680">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
-            <element signature="e#413#429#0" />
-            <element signature="e#641#1544#0" />
-            <element signature="e#1611#2217#0" />
-            <element signature="n#!!block;n#createRequest#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#sendRequest#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#setCurrentDayColor#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#Cell#0;n#!!block;n#initCells#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#setCellCallbacks#0;n#!!block;n#calendar#0" />
-            <element signature="n#!!block;n#checkCells#0;n#!!block;n#calendar#0" />
             <element signature="n#!!block;n#getWeekOfYear#0;n#!!block;n#calendar#0" />
           </folding>
         </state>
