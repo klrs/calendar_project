@@ -59,23 +59,23 @@ function getReservations($pvm){
         while ($row = $results->fetch_assoc()) {
             $tmp[] = $row;
         }
-        return $tmp;
     }
     else {
         echo 'Kysely ei tuottanut tuloksia. </br>';
-        return null;
+        $tmp = null;
     }
 
     $closed = $db->close();
     if (!$closed) {
         echo 'Virhe sulkiessa yhteyttä tietokantaan';
     }
-
+    return $tmp;
 }
 
 //palauttaa true jos lisäys onnistuu, false jos ei
 function createReservation($nimi, $email, $pvm, $klo){
     $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
+    $success = true;
     if ($db->connect_errno != 0) {
         echo $db->connect_error;
         return false;
@@ -85,22 +85,24 @@ function createReservation($nimi, $email, $pvm, $klo){
     $result = $db->query($query);
     if (!$result) {
         echo "Varausta lisätessä tapahtui virhe";
-        return false;
+        $success = false;
     }
     else {
         echo "Varaus onnistuneesti lisätty! ID:llä {$db->insert_id}";
-        return true;
+        $success = true;
     }
     $closed = $db->close();
     if (!$closed) {
         echo 'Virhe sulkiessa yhteyttä.';
     }
+    return $success;
 }
 
  // palauttaa true jos poistaminen onnistuu, muuten false
 function deleteReservation($id, $email, $pvm, $klo) {
 
     $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
+    $success = true;
 
     if ($db->connect_errno != 0) {
         echo $db->connect_error;
@@ -112,18 +114,18 @@ function deleteReservation($id, $email, $pvm, $klo) {
     echo $result;
     if (!$result) {
         echo "Varausta poistettaessa tapahtui virhe";
-        return false;
+        $success = false;
     }
     else {
         echo "Varaus onnistuneesti poistettu!";
-        return true;
+        $success = true;
     }
     $closed = $db->close();
     if (!$closed) {
         echo 'Virhe sulkiessa yhteyttä.';
     }
 
-
+    return $success;
 }
 
 # Main
@@ -136,16 +138,14 @@ $parameters = getParameters();
 # Redirect to appropriate handlers.
 if ($resource[1]=="api") {
     if ($request_method=="POST" && $resource[2]=="reservation") {
-        echo $parameters . " " . $parameters[name] //debug
-        //createReservation($resource[name], $resource[email], $resource[date], $resource[time]);
+        echo createReservation($parameters[name], $parameters[email], $parameters[date], $parameters[time]);
     }
     else if ($request_method=="GET" && $resource[2]=="reservation") {
-        echo $resource[3];
-        getReservations();  //parametriksi päivä HUOM PVM FORMAATISSA YYYY-MM-DD
+        $reservations = getReservations($resource[3]);  //parametriksi päivä HUOM PVM FORMAATISSA YYYY-MM-DD
+        echo json_encode($reservations);
     }
     else if ($request_method=="DELETE" && $resource[2]=="reservation") {
-        //delete????????
-        echo $resource[3];
+        echo createReservation($resource[id], $resource[email], $resource[date], $resource[time]);
     }
     else {
         http_response_code(405); # Method not allowed

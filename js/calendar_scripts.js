@@ -5,6 +5,7 @@ function calendar() {
     var currentDay = date.getDay() || 7 ;
     var weekdays = document.getElementsByClassName("weekdays");
     let cells = [];
+    let td = document.getElementsByTagName("td");
 
     var oldDay = currentDay;
     var newDay = currentDay;
@@ -139,27 +140,29 @@ function calendar() {
     }
     function setCellCallbacks() {
         //assigns callback function to each cell
-        let td = document.getElementsByTagName("td");
 
+        for(let c = 0; c < cells.length; c++) {
+            checkCell(c);
+        }
+    }
+    function checkCell(index) {
         //PRONE TO ERRORS!
         let form_date = document.forms[0];
         let delform_date = document.forms[1];
 
-        for(let c = 0; c < cells.length; c++) {
-            if(cells[c].reserved === false) {
-                td[c].onclick = function () {
-                    form_date.elements["date"].value = cells[c].day;
-                    form_date.elements["start_time"].value = cells[c].time;
-                    $('#submit_form').modal('show');
-                };
-            } else {
-                td[c].style.backgroundColor = "DarkRed";
-                td[c].innerHTML = "reserved";
-                td[c].onclick = function() {
-                    delform_date.elements["date"].value = cells[c].day;
-                    delform_date.elements["start_time"].value = cells[c].time;
-                    $('#delete_form').modal('show');
-                }
+        if(cells[index].reserved === false) {
+            td[index].onclick = function () {
+                form_date.elements["date"].value = cells[index].day;
+                form_date.elements["start_time"].value = cells[index].time;
+                $('#submit_form').modal('show');
+            };
+        } else {
+            td[index].style.backgroundColor = "DarkRed";
+            td[index].innerHTML = "reserved";
+            td[index].onclick = function() {
+                delform_date.elements["date"].value = cells[index].day;
+                delform_date.elements["start_time"].value = cells[index].time;
+                $('#delete_form').modal('show');
             }
         }
     }
@@ -172,16 +175,21 @@ function calendar() {
         let httpRequests = [];
         for(let i = 0; i < 7; i++) {
             let r_date = newdate.toISOString().split("T")[0];
-            let reservations;
             uri = 'api/reservation/' + r_date;
 
             httpRequests[i] = createRequest();
             httpRequests[i].onreadystatechange = function(){
                 if (httpRequests[i].readyState === 4) {
                     if (httpRequests[i].status === 200) {
-                        reservations = httpRequests[i].responseText;
-                        alert(reservations);
-                        //EXTRACT RESERVATIONS AND CHECK THE TIME AND MARK RESERVED CELLS!!!!
+                        let reservJSON = httpRequests[i].responseText;
+                        let res = JSON.parse(reservJSON);
+                        alert(res.length);
+                        for(let y = 0; y < res.length; y++) {
+                            //SAHNFLKJAHSFKJHASFJKLHFSAKJHAFSKJH IT*S FUCKED BIG TIME
+                            let cell_index = Math.abs(14 - res[y].KLOSTART);
+                            cells[(cell_index*7) + i].reserved = true;
+                            checkCell((cell_index*8) + i);
+                        }
                     } else {
                         alert('There was a problem with the request.');
                     }
@@ -190,11 +198,6 @@ function calendar() {
             sendRequest(uri, "GET", httpRequests[i]);
             newdate.setDate(newdate.getDate()+1);
         }
-
-        let dummyjson = '{"date":"5/5/2019", "time":"14"}';
-        let o = JSON.parse(dummyjson);
-        cells[0].reserved = true;
-
     }
     function getWeekOfYear() {
         var target = new Date(date.valueOf()),
