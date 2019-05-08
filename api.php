@@ -40,24 +40,24 @@ function getMethod() {
 # Handlers
 # ------------------------------
 
-//$con = mysqli_connect('localhost', 'calendaruser', 'varauspassu' ,'VARAUS');
+//getReservations
+// palauttaa null jos ei haulla ei tuloksia
+// palauttaa arrayn kaikista varauksista yhdelle päivälle
+// muodossa ArrayArrayArray([0] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- ensimmäinen varaus
+//							[1] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- toka varaus... jne.
 
-//hakee kaikki varaukset yhdelle päivämäärälle.
-//Palauttaa arrayn. Jos varauksia ei löydy palauttaa null
-function getReservations($varausPVM){
-
-    $db = new mysqli('localhost', 'calendaruser', 'varauspassu123', 'VARAUS');
+function getReservations($pvm){
+    $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
     if ($db->connect_errno != 0) {
         echo $db->connect_error;
         exit;
     }
-    $query = "SELECT * FROM VARAUS WHERE PVM=$varausPVM";
+    $query = "SELECT * FROM VARAUS WHERE PVM='$pvm'";
     $results = $db->query($query);
     if ($results->num_rows > 0) {
-
         $tmp = array();
         while ($row = $results->fetch_assoc()) {
-
+            echo $row;
             $tmp[] = $row;
         }
         return $tmp;
@@ -66,33 +66,65 @@ function getReservations($varausPVM){
         echo 'Kysely ei tuottanut tuloksia. </br>';
         return null;
     }
+
     $closed = $db->close();
     if (!$closed) {
         echo 'Virhe sulkiessa yhteyttä tietokantaan';
+    }
+
+}
+
+//palauttaa true jos lisäys onnistuu, false jos ei
+function createReservation($nimi, $email, $pvm, $klo){
+    $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
+    if ($db->connect_errno != 0) {
+        echo $db->connect_error;
+        return false;
+    }
+
+    $query = "INSERT INTO VARAUS VALUES ('$nimi', '$email', '$pvm', '$klo', NULL)";
+    $result = $db->query($query);
+    if (!$result) {
+        echo "Varausta lisätessä tapahtui virhe";
+        return false;
+    }
+    else {
+        echo "Varaus onnistuneesti lisätty! ID:llä {$db->insert_id}";
+        return true;
+    }
+    $closed = $db->close();
+    if (!$closed) {
+        echo 'Virhe sulkiessa yhteyttä.';
     }
 }
 
-function createReservation($nimi, $sposti, $pvm, $kloStart) {
-    $success = false;
-    $db = new mysqli('localhost', 'calendaruser', 'varauspassu', 'CALENDAR');
+ // palauttaa true jos poistaminen onnistuu, muuten false
+function deleteReservation($id, $email, $pvm, $klo) {
+
+    $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
+
     if ($db->connect_errno != 0) {
         echo $db->connect_error;
-        exit;
+        return false;
     }
-    $query = "INSERT INTO varaus VALUES(NULL, NULL, '$kloStart', '$nimi', NULL, '$pvm', '$sposti')";
-    $results = $db->query($query);
-    if ($results->num_rows > 0) {
-        $success = true;
 
+    $query = "DELETE FROM VARAUS WHERE ID='$id' AND SPOSTI='$email' AND PVM='$pvm' AND KLOSTART='$klo' ";
+    $result = $db->query($query);
+    echo $result;
+    if (!$result) {
+        echo "Varausta poistettaessa tapahtui virhe";
+        return false;
     }
     else {
-        echo 'Varauksen luonti tietokantaan epäonnistui. </br>';
+        echo "Varaus onnistuneesti poistettu!";
+        return true;
     }
     $closed = $db->close();
     if (!$closed) {
-        echo 'Virhe sulkiessa yhteyttä tietokantaan';
+        echo 'Virhe sulkiessa yhteyttä.';
     }
-    return $success;
+
+
 }
 
 # Main
