@@ -43,8 +43,8 @@ function getMethod() {
 //getReservations
 // palauttaa null jos ei haulla ei tuloksia
 // palauttaa arrayn kaikista varauksista yhdelle päivälle
-// muodossa ArrayArrayArray([0] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- ensimmäinen varaus
-//							[1] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- toka varaus... jne.
+// muodossa Array([0] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- ensimmäinen varaus
+//				[1] => Array ( [KEY] => VALUE [KEY] => VALUE ....) <--- toka varaus... jne.
 
 function getReservations($pvm){
     $db = new mysqli('localhost', 'calendaruser', 'kalenteri2019', 'CALENDAR');
@@ -57,7 +57,6 @@ function getReservations($pvm){
     if ($results->num_rows > 0) {
         $tmp = array();
         while ($row = $results->fetch_assoc()) {
-            echo $row;
             $tmp[] = $row;
         }
         return $tmp;
