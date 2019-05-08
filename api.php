@@ -130,13 +130,14 @@ function deleteReservation($id, $email, $pvm, $klo) {
     $query = "DELETE FROM VARAUS WHERE ID='$id' AND SPOSTI='$email' AND PVM='$pvm' AND KLOSTART='$klo' ";
     $result = $db->query($query);
     echo $result;
-    if (!$result) {
-        echo "Varausta poistettaessa tapahtui virhe";
-        $success = false;
-    }
-    else {
+    if ($result->num_rows > 0) {
         echo "Varaus onnistuneesti poistettu!";
         $success = true;
+    }
+    else {
+        echo "Varausta poistettaessa tapahtui virhe";
+
+        $success = false;
     }
     $closed = $db->close();
     if (!$closed) {
