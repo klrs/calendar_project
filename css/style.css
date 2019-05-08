@@ -8,7 +8,10 @@ body{
     display: none;
     color: lightgray;
 }
-
+#delete_form{
+    display: none;
+    color: lightgray;
+}
 th{text-align: center; }
 td{text-align: center; cursor: pointer;}
 td:hover{background-color: red;}
