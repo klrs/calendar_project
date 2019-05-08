@@ -40,6 +40,27 @@ function getMethod() {
 # Handlers
 # ------------------------------
 
+//parametreina varaajan nimi ja maili. varauspvm ja varauskloaika, sekä url varauksen poistamiseen
+function reservationEmail($name, $email, $cancelUrl, $varausPvm, $varausKlo){
+    $to = $email;
+    $headers = "From: noreply@ajanaraus.kek";
+    $subject = 'Kiitos ajanvarauksestanne';
+    $msg =  'Hei ' . $name . "\n" . "\n" . 'Varauksenne ajalle ' . $varausPvm . ' klo ' . $varausKlo  .
+        ' on tallennettu järjestelmäämme. ' . "\n" . "\n" .
+        'Halutessanne voitte peruuttaa varauksenne oheisella linkillä: ' . $cancelUrl;
+
+    $sent = mail($to, $subject, $msg, $headers);
+
+    if($sent) {
+        echo 'viesti lähetetty.';
+        return true;
+    } else {
+        echo 'Viestiä ei voitu lähettää';
+        return false;
+    }
+}
+
+
 //getReservations
 // palauttaa null jos ei haulla ei tuloksia
 // palauttaa arrayn kaikista varauksista yhdelle päivälle
