@@ -41,7 +41,7 @@ function getMethod() {
 # ------------------------------
 
 //parametreina varaajan nimi ja maili. varauspvm ja varauskloaika, sekä url varauksen poistamiseen
-function reservationEmail($name, $email, $cancelUrl, $varausPvm, $varausKlo){
+function reservationEmail($name, $email, $cancelUrl, $varausPvm, $varausKlo) {
     $to = $email;
     $headers = "From: noreply@ajanaraus.kek";
     $subject = 'Kiitos ajanvarauksestanne';
@@ -150,7 +150,7 @@ function deleteReservation($id, $email, $pvm, $klo) {
     $query = "DELETE FROM VARAUS WHERE ID='$id' AND SPOSTI='$email' AND PVM='$pvm' AND KLOSTART='$klo' ";
     $result = $db->query($query);
     echo $result;
-    if ($result->num_rows > 0) {
+    if ($db->affected_rows > 0) {
         echo "Varaus onnistuneesti poistettu!";
         $success = true;
     }
