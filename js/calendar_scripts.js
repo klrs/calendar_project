@@ -43,6 +43,26 @@ function calendar() {
         sendRequest(uri, "POST", httpRequest);
         $('#submit_form').modal('hide');
     };
+    document.getElementById("deleteSubmit").onclick = function() {
+        let form = document.forms[1];
+        let id = form.elements["id"];
+        let email = form.elements["email"];
+
+        let uri = 'api/reservation?id=' + id + "&email=" + email;
+        let httpRequest = createRequest();
+
+        //FIXES ??
+        httpRequest.onreadystatechange = function() {
+            if (httpRequest.readyState === 4) {
+                if (httpRequest.status === 200) {
+                    alert(httpRequest.responseText);
+                    setup();
+                } else {
+                    alert('There was a problem with the request.');
+                }
+            }
+        }
+    };
 
     function createRequest() {
         let httpRequest;
@@ -129,6 +149,9 @@ function calendar() {
             } else {
                 td[c].style.backgroundColor = "DarkRed";
                 td[c].innerHTML = "reserved";
+                td[c].onclick = function() {
+                    $('#delete_form').modal('show');
+                }
             }
         }
     }
