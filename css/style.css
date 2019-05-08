@@ -28,6 +28,7 @@ img{max-height: 30px}
 .modal-footer{
     border-top: #53677b solid 2px;
     background: #31363c;
+    width: 100%
 }
 
 .modal-content{
