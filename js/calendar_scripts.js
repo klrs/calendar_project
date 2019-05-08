@@ -16,7 +16,7 @@ function calendar() {
         setup();
     };
     document.getElementById("submit").onclick = function() {
-        let form = document.forms[0];
+        let form = document.forms[0];   //PRONE TO ERROR
 
         //data
         let name = form.elements["name"].value;
@@ -42,12 +42,13 @@ function calendar() {
         $('#submit_form').modal('hide');
     };
     document.getElementById("deleteSubmit").onclick = function() {
-        // MIGHT NEED TO ADD DATE & TIME
-        let form = document.forms[1];
+        let form = document.forms[1];   //PRONE TO ERROR
         let id = form.elements["id"];
         let email = form.elements["email"];
+        let f_date = form.elements["date"].value;
+        let time = form.elements["start_time"].value.split(":")[0];
 
-        let uri = 'api/reservation?id=' + id + "&email=" + email;
+        let uri = 'api/reservation?id=' + id + "&email=" + email + "&date=" + f_date + "&time=" + time;
         let httpRequest = createRequest();
 
         //ADD FUNCTIONALITY ??
@@ -139,7 +140,11 @@ function calendar() {
     function setCellCallbacks() {
         //assigns callback function to each cell
         let td = document.getElementsByTagName("td");
+
+        //PRONE TO ERRORS!
         let form_date = document.forms[0];
+        let delform_date = document.forms[1];
+
         for(let c = 0; c < cells.length; c++) {
             if(cells[c].reserved === false) {
                 td[c].onclick = function () {
@@ -151,6 +156,8 @@ function calendar() {
                 td[c].style.backgroundColor = "DarkRed";
                 td[c].innerHTML = "reserved";
                 td[c].onclick = function() {
+                    delform_date.elements["date"].value = cells[c].day;
+                    delform_date.elements["start_time"].value = cells[c].time;
                     $('#delete_form').modal('show');
                 }
             }
