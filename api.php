@@ -41,7 +41,7 @@ function getMethod() {
 # ------------------------------
 
 //parametreina varaajan nimi ja maili. varauspvm ja varauskloaika, sekä url varauksen poistamiseen
-function reservationEmail($name, $email, $cancelUrl, $varausPvm, $varausKlo) {
+function reservationEmail($name, $email, $varausPvm, $varausKlo) {
     $to = $email;
     $headers = "From: noreply@ajanaraus.kek";
     $subject = 'Kiitos ajanvarauksestanne';
@@ -128,6 +128,7 @@ function createReservation($nimi, $email, $pvm, $klo){
     }
     else {
         echo "Varaus onnistuneesti lisätty! ID:llä {$db->insert_id}";
+        reservationEmail($nimi, $email, $pvm, $klo);
         $success = true;
     }
     $closed = $db->close();
