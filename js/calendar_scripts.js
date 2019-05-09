@@ -152,7 +152,7 @@ function calendar() {
         let delform_date = document.forms[1];
 
         if(cells[index].reserved === false) {
-            td[index].style.backgroundColor = "transparent";
+            td[index].classList.remove("bg-danger");
             td[index].innerHTML = "";
             td[index].onclick = function () {
                 form_date.elements["date"].value = cells[index].day;
@@ -160,7 +160,7 @@ function calendar() {
                 $('#submit_form').modal('show');
             };
         } else {
-            td[index].style.backgroundColor = "DarkRed";
+            td[index].classList.add("bg-danger");
             td[index].innerHTML = "reserved";
             td[index].onclick = function() {
                 delform_date.elements["date"].value = cells[index].day;
