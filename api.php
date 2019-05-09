@@ -41,18 +41,18 @@ function getMethod() {
 # ------------------------------
 
 //parametreina varaajan nimi ja maili. varauspvm ja varauskloaika, sekä url varauksen poistamiseen
-function reservationEmail($name, $email, $varausPvm, $varausKlo) {
+function reservationEmail($name, $email, $varausPvm, $varausKlo, $varausId) {
     $to = $email;
     $headers = "From: noreply@ajanaraus.kek";
     $subject = 'Kiitos ajanvarauksestanne';
     $msg =  'Hei ' . $name . "\n" . "\n" . 'Varauksenne ajalle ' . $varausPvm . ' klo ' . $varausKlo  .
         ' on tallennettu järjestelmäämme. ' . "\n" . "\n" .
-        'Halutessanne voitte peruuttaa varauksenne oheisella linkillä: ' . $cancelUrl;
+        'Halutessanne voitte peruuttaa varauksenne klikkaamalla varaustanne ja syöttämällä siihen varaustunnuksenne joka on ' . $varausId . ', sekä sähköpostiosoitteenne.';
 
     $sent = mail($to, $subject, $msg, $headers);
 
     if($sent) {
-        echo 'viesti lähetetty.';
+        echo ' Varausvahvistus on lähetetty teille sähköpostilla.';
         return true;
     } else {
         echo 'Viestiä ei voitu lähettää';
@@ -128,7 +128,8 @@ function createReservation($nimi, $email, $pvm, $klo){
     }
     else {
         echo "Varaus onnistuneesti lisätty! ID:llä {$db->insert_id}";
-        reservationEmail($nimi, $email, $pvm, $klo);
+        $varausId = $db->insert_id;
+        reservationEmail($nimi, $email, $pvm, $klo, $varausId);
         $success = true;
     }
     $closed = $db->close();
