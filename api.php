@@ -95,7 +95,7 @@ function getReservations($startDate, $endDate){
     }
 
     else {
-        echo 'Kysely ei tuottanut tuloksia. </br>';
+        //echo 'Kysely ei tuottanut tuloksia. </br>';
         $closed = $db->close();
         if (!$closed) {
             echo 'Virhe sulkiessa yhteyttä tietokantaan';
@@ -175,19 +175,25 @@ function deleteReservation($id, $email, $pvm, $klo) {
 $resource = getResource();
 $request_method = getMethod();
 $parameters = getParameters();
+$body = json_decode(file_get_contents('php://input'));
 
 # Redirect to appropriate handlers.
 if ($resource[1]=="api") {
     if ($request_method=="POST" && $resource[2]=="reservation") {
-        echo createReservation($parameters['name'], $parameters['email'], $parameters['date'], $parameters['time']);
+        echo createReservation($body->name, $body->email, $body->f_date, $body->time);
     }
     else if ($request_method=="GET" && $resource[2]=="reservation") {
         $reservations = getReservations($parameters['s_date'], $parameters['e_date']);  //parametriksi päivä HUOM PVM FORMAATISSA YYYY-MM-DD
-        echo json_encode($reservations);
+        if ($reservations != null) {
+            echo json_encode($reservations);
+        }
+        else {
+            echo 'no reservations found';
+        }
     }
     else if ($request_method=="DELETE" && $resource[2]=="reservation") {
-        echo $parameters['id'], $parameters['email'], $parameters['date'], $parameters['time'];
-        echo deleteReservation($parameters['id'], $parameters['email'], $parameters['date'], $parameters['time']);
+        //echo $body->id . $body->email . $body->f_date . $body->time;
+        echo deleteReservation($body->id, $body->email, $body->f_date, $body->time);
     }
     else {
         http_response_code(405); # Method not allowed

@@ -12,6 +12,7 @@ function calendar() {
 
     setup();
 
+    //set callback functions for site elements
     document.getElementById("navi").onchange = function() {
         date = document.getElementById('navi').valueAsDate;
         setup();
@@ -20,13 +21,15 @@ function calendar() {
         let form = document.forms[0];   //PRONE TO ERROR
 
         //data
-        let name = form.elements["name"].value;
-        let email = form.elements["email"].value;
-        let f_date = form.elements["date"].value;
-        let time = form.elements["start_time"].value.split(":")[0];
+        let fields = new Object();
+        fields.name = form.elements["name"].value;
+        fields.email = form.elements["email"].value;
+        fields.f_date = form.elements["date"].value;
+        fields.time = form.elements["start_time"].value.split(":")[0];
+
 
         //ajax
-        let uri = 'api/reservation?name=' + name + '&email=' + email + '&date=' + f_date + '&time=' + time;
+        let uri = 'api/reservation/';
         let httpRequest = createRequest();
         httpRequest.onreadystatechange = function() {
             if (httpRequest.readyState === 4) {
@@ -39,17 +42,19 @@ function calendar() {
             }
         };
 
-        sendRequest(uri, "POST", httpRequest);
+        sendRequest(uri, "POST", httpRequest, JSON.stringify(fields));
         $('#submit_form').modal('hide');
     };
     document.getElementById("deleteSubmit").onclick = function() {
         let form = document.forms[1];   //PRONE TO ERROR
-        let id = form.elements["id"].value;
-        let email = form.elements["email"].value;
-        let f_date = form.elements["date"].value;
-        let time = form.elements["start_time"].value.split(":")[0];
 
-        let uri = 'api/reservation?id=' + id + "&email=" + email + "&date=" + f_date + "&time=" + time;
+        let fields = new Object();
+        fields.id = form.elements["id"].value;
+        fields.email = form.elements["email"].value;
+        fields.f_date = form.elements["date"].value;
+        fields.time = form.elements["start_time"].value.split(":")[0];
+
+        let uri = 'api/reservation/';
         let httpRequest = createRequest();
 
         //ADD FUNCTIONALITY ??
@@ -63,10 +68,11 @@ function calendar() {
                 }
             }
         };
-        sendRequest(uri, "DELETE", httpRequest);
+        sendRequest(uri, "DELETE", httpRequest, JSON.stringify(fields));
         $('#delete_form').modal('hide');
     };
 
+    //ajax helper functions
     function createRequest() {
         let httpRequest;
         if (window.XMLHttpRequest) { // Mozilla, Safari, ...
@@ -88,13 +94,15 @@ function calendar() {
         }
         return httpRequest;
     }
-    function sendRequest(uri, method, httpRequest) {
+    function sendRequest(uri, method, httpRequest, body) {
         httpRequest.open(method, uri);
-        httpRequest.send();
+        httpRequest.send(body);
     }
 
+    //table generation functions
     function setCurrentDayColor() {
         //colors current day red
+
         newDay = currentDay;
         //header color from bootstrap class
         weekdays[newDay - 1].classList.add("bg-danger");
@@ -106,6 +114,7 @@ function calendar() {
     }
     function setTblHeaders() {
         //generate current week number to week heading
+
         document.getElementById("currentWeek").innerHTML = "Week " + getWeekOfYear();
         //generate date to calendarNav ISOString timezone fix
         var isoDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
@@ -120,6 +129,8 @@ function calendar() {
         }
     }
     function initCells() {
+        //initializes cells array
+
         for(let time = 0; time < 9; time++) {
             for(let day = 0; day < 7; day++) {
                 cells.push(new Cell(day, time));
@@ -140,13 +151,15 @@ function calendar() {
         }
     }
     function setCellCallbacks() {
-        //assigns callback function to each cell
+        //scrolls through each cell
 
         for(let c = 0; c < cells.length; c++) {
             checkCell(c);
         }
     }
     function checkCell(index) {
+        //assigns callback function to each cell and css properties
+
         //PRONE TO ERRORS!
         let form_date = document.forms[0];
         let delform_date = document.forms[1];
@@ -170,69 +183,45 @@ function calendar() {
         }
     }
     function setReservations() {
-        //WIP
-        //get current WEEK reservations loop??
+        //gets the reservations JSON from server and assigns cells reserved based on it
+
         let newdate = new Date(+date);
         newdate.setDate(newdate.getDate() - currentDay + 1);
         let start_date = newdate.toISOString().split("T")[0];
         newdate.setDate(newdate.getDate()+6);
         let end_date = newdate.toISOString().split("T")[0];
 
+        //let uri = 'api/reservation/';
         let uri = 'api/reservation?s_date=' + start_date + '&e_date=' + end_date;
         let httpRequest = createRequest();
         httpRequest.onreadystatechange = function() {
             if (httpRequest.readyState === 4) {
                 if(httpRequest.status === 200) {
                     let reservationsJSON = httpRequest.responseText;
-                    let res = JSON.parse(reservationsJSON);
-                    for(let i = 0; i < res.length; i++) {
-                        let cell_index = 0;
-                        for(let y = 0; y < 7; y++) {
-                            if(res[i].PVM === cells[y].day) {
-                                cell_index = cell_index + y;
+                    try {
+                        let res = JSON.parse(reservationsJSON);
+                        for(let i = 0; i < res.length; i++) {
+                            let cell_index = 0;
+                            for(let y = 0; y < 7; y++) {
+                                if(res[i].PVM === cells[y].day) {
+                                    cell_index = cell_index + y;
+                                }
                             }
+                            cell_index = cell_index + (7 * Math.abs(14 - res[i].KLOSTART));
+                            cells[cell_index].reserved = true;  //function checkCell checks this very property
+                            checkCell(cell_index);
                         }
-                        cell_index = cell_index + (7 * Math.abs(14 - res[i].KLOSTART));
-                        cells[cell_index].reserved = true;
-                        checkCell(cell_index);
+                    } catch(error) {
+                        console.log("No results found!");
                     }
                 } else {
                     alert('There was a problem with the request.');
                 }
             }
         };
-        sendRequest(uri, "GET", httpRequest);
-
-
-
-        /*
-        for(let i = 0; i < 7; i++) {
-            let r_date = newdate.toISOString().split("T")[0];
-            uri = 'api/reservation/' + r_date;
-
-            httpRequests[i] = createRequest();
-            httpRequests[i].onreadystatechange = function(){
-                if (httpRequests[i].readyState === 4) {
-                    if (httpRequests[i].status === 200) {
-                        let reservJSON = httpRequests[i].responseText;
-                        let res = JSON.parse(reservJSON);
-                        alert(res.length);
-                        for(let y = 0; y < res.length; y++) {
-                            //SAHNFLKJAHSFKJHASFJKLHFSAKJHAFSKJH IT*S FUCKED BIG TIME
-                            let cell_index = Math.abs(14 - res[y].KLOSTART);
-                            cells[(cell_index*7) + i].reserved = true;
-                            checkCell((cell_index*8) + i);
-                        }
-                    } else {
-                        alert('There was a problem with the request.');
-                    }
-                }
-            };
-            sendRequest(uri, "GET", httpRequests[i]);
-            newdate.setDate(newdate.getDate()+1);
-        }
-        */
+        sendRequest(uri, "GET", httpRequest, null);
     }
+
     function getWeekOfYear() {
         var target = new Date(date.valueOf()),
             dayNumber = (date.getDay() + 6) % 7,
@@ -266,6 +255,8 @@ function calendar() {
     };
 
     function setup() {
+        //setup() generates the calendar
+        //SETUP SHOULD BE CALLED EVERYTIME USER NAVIGATES OR MAKES CHANGES TO CALENDAR
         currentDay = date.getDay() || 7;
         cells.length = 0;
         initCells();
