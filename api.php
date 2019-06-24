@@ -76,7 +76,7 @@ function getReservations($startDate, $endDate){
         exit;
     }
 
-    //$query = "SELECT * FROM VARAUS WHERE PVM BETWEEN '2019-05-06' AND '2019-05-12'";
+    //MUUTA PREPAREDSTATEMENT
     $query = "SELECT * FROM VARAUS WHERE PVM BETWEEN '$startDate' AND '$endDate'";
 
     $results = $db->query($query);
@@ -120,6 +120,7 @@ function createReservation($nimi, $email, $pvm, $klo){
         return false;
     }
 
+    //MUUTA PREPAREDSTATEMENT
     $query = "INSERT INTO VARAUS VALUES ('$nimi', '$email', '$pvm', '$klo', NULL)";
     $result = $db->query($query);
     if (!$result) {
@@ -149,6 +150,7 @@ function deleteReservation($id, $email, $pvm, $klo) {
         return false;
     }
 
+    //MUUTA PREPAREDSTATEMENT
     $query = "DELETE FROM VARAUS WHERE ID='$id' AND SPOSTI='$email' AND PVM='$pvm' AND KLOSTART='$klo' ";
     $result = $db->query($query);
     echo $result;
